@@ -1,0 +1,7 @@
+existe 3 tipos de iris 
+
+Versicolor
+
+Setosa
+
+Virginica
