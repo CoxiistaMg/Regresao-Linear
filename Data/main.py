@@ -2,7 +2,7 @@ from tools import dates, weights
 dates.FILE_DATES = 'tools/files/'
 
 def lr(file_name):
-    date = dates.DatesBi(file_name, train_percentage=0.5)
+    date = dates.Dates(file_name, train_percentage=0.5)
     w = weights.Weights(date.qt_weights, date.qt_weights_per_types)
 
     try:
@@ -17,17 +17,13 @@ def lr(file_name):
             date.acc_rate(w, True)
 
             for _ in range(0, 1000):
-                date = dates.DatesBi(file_name, train_percentage=0.01)
+                date = dates.Dates(file_name, train_percentage=0.001)
                 date.min_selector = min_selector
-                date.train(w.update_weight, 0.000000)
+                date.train(w.update_weight, 0.1)
                 result = date.acc_rate(w, False)
                 if date.min_selector < result:
                     min_selector = result
      
- 
-
-
-
     except:
         date.train(w.update_weight, 0.3)
     date.acc_rate(w, True)
@@ -35,5 +31,5 @@ def lr(file_name):
 def lor(file_name):
     pass
 
-lr('diabetes.csv')
+lr('iris.csv')
 

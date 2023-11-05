@@ -155,6 +155,7 @@ class Dates():
                 print(f'reposta gerada: {self.types_of_answers[index_return]}'.center(55))
                 print('==========================================================') 
                 print('\033[0;40;40m')
+
         if hits * 100 / len(self.test_list) > self.min_selector:
             self.save(w)
         if display: 
@@ -163,8 +164,9 @@ class Dates():
 
     @staticmethod
     def save(w):
+         
          with open('refined_weight.csv', 'w') as CsvFile:
-                wt = writer(CsvFile)
+                wt = writer(CsvFile, lineterminator='\r')
                 wt.writerow(w.bias)
                 for each in w.lst_weights:
                     wt.writerow(each)
